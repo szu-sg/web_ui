@@ -1,0 +1,12 @@
+[
+  {
+    "key": "ctrl+alt+r",
+    "command": "playwright.recordNew",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+r",
+    "command": "playwright.recordAtCursor",
+    "when": "editorTextFocus"
+  }
+]

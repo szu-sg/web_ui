@@ -1,7 +1,11 @@
-
 # Playwright
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# 登录态与本地调试（勿提交）
+auth.json
+.env
+debug.log

@@ -1,12 +1,21 @@
 import { defineConfig, devices } from '@playwright/test';
+import { existsSync } from 'fs';
+import { resolve } from 'path';
+
+// 登录态：优先用环境变量 AUTH_FILE，否则用项目根目录的 auth.json（勿在用例中写登录信息）
+const authFile = resolve(__dirname, process.env.AUTH_FILE || 'auth.json');
 
 export default defineConfig({
   testDir: './tests',
+  testMatch: '**/*.spec.ts',
   fullyParallel: true,
-  reporter: 'html',
+  timeout: 600000, // 单条用例超时 10 分钟
+  retries: process.env.CI ? 2 : 0,
+  forbidOnly: !!process.env.CI,
+  reporter: process.env.CI ? [['html'], ['junit', { outputFile: 'test-results/junit.xml' }]] : 'html',
   use: {
     baseURL: 'https://365.kdocs.cn/kmwiki',
-    storageState: 'auth.json',
+    storageState: existsSync(authFile) ? authFile : undefined,
     headless: false,
     viewport: { width: 1980, height: 1080 },
     locale: 'zh-CN',

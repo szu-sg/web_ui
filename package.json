@@ -2,16 +2,29 @@
   "name": "web_ui",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:ci": "playwright test --config=playwright.config.ts",
+    "test:p0": "playwright test --grep @p0",
+    "auth": "node scripts/save-auth.js",
+    "record": "playwright codegen --load-storage=auth.json https://365.kdocs.cn/kmwiki",
+    "record:blank": "playwright codegen",
+    "meta": "node scripts/collect-case-meta.js",
+    "meta:json": "node scripts/collect-case-meta.js --output=case-meta.json"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.53.2",
-    "@types/node": "^24.0.10"
+    "@types/node": "^24.0.10",
+    "dotenv": "^16.4.5"
   },
   "dependencies": {
+    "alphabin-pw": "^1.0.11",
     "playwright": "^1.54.1"
   }
 }
